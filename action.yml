@@ -1,14 +1,30 @@
 name: 'Run benchmarks'
 description: 'Run benchmarks in Firebase Test Labs, optionally updating an issue and collecting results'
 inputs:
-  github-token:
-    description: 'The github token to use to update the issue. Using a machine account personal access token is recommended.'
+  github_token:
+    description: 'If present, the github token to use to update the dashboard issue. Using a machine account personal access token is recommended.'
     required: false
     default: ${{ github.token }}
-  google-services-json:
-    description: 'The github token to use to update the issue. Using a machine account personal access token is recommended.'
+  google_services_json:
+    description: 'a service account json with Owner permissions (could certainly be less but haven''t found a way yet). The GCP project must have "Google Cloud Testing API" and "Cloud Tool Results API" enabled'
+    required: true
+  test_apk:
+    description: 'the path to the test apk. This apk is passed to the --test option of gcloud'
+    required: true
+  app_apk:
+    description: 'the path to the app apk. This apk is passed to the --app option of gcloud. For microbenchmarks, use an empty or small apk'
+    required: true
+  devide_model:
+    description: 'The device to use. See https://firebase.google.com/docs/test-lab/android/available-testing-devices'
+    required: true
+    default: 'redfin,locale=en,orientation=portrait'
+  dd_api_key:
+    description: 'A Datadog API key to upload data to Datadog'
     required: false
-    default: ${{ github.token }}
+  dd_metric_prefix:
+    description: 'Datadog metric prefix.'
+    required: false
+    default: 'android.benchmark'
 
 
 runs:

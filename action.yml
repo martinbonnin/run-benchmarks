@@ -1,0 +1,17 @@
+name: 'Run benchmarks'
+description: 'Run benchmarks in Firebase Test Labs, optionally updating an issue and collecting results'
+inputs:
+  github-token:
+    description: 'The github token to use to update the issue. Using a machine account personal access token is recommended.'
+    required: false
+    default: ${{ github.token }}
+  google-services-json:
+    description: 'The github token to use to update the issue. Using a machine account personal access token is recommended.'
+    required: false
+    default: ${{ github.token }}
+
+
+runs:
+  using: 'node12'
+  main: 'index.js'
+

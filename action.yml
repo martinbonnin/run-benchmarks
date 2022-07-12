@@ -13,7 +13,7 @@ inputs:
   app_apk:
     description: 'the path to the app apk. This apk is passed to the --app option of gcloud. For microbenchmarks, use an empty or small apk'
     required: true
-  devide_model:
+  device_model:
     description: 'The device to use. See https://firebase.google.com/docs/test-lab/android/available-testing-devices'
     required: true
     default: 'redfin,locale=en,orientation=portrait'

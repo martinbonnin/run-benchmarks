@@ -4,7 +4,6 @@ inputs:
   github_token:
     description: 'If present, the github token to use to update the dashboard issue. Using a machine account personal access token is recommended.'
     required: false
-    default: ${{ github.token }}
   google_services_json:
     description: 'a service account json with Owner permissions (could certainly be less but haven''t found a way yet). The GCP project must have "Google Cloud Testing API" and "Cloud Tool Results API" enabled'
     required: true

@@ -264,7 +264,7 @@ fun issueBody(testResult: TestResult): String {
         appendLine("### Last Run: ${Date()}")
         appendLine("* Firebase console: [link](${testResult.firebaseUrl})")
         getOptionalInput("dd_dashboard_url")?.let {
-            appendLine("* DataDog dashboard: [link](${it})")
+            appendLine("* Datadog dashboard: [link](${it})")
         }
         appendLine()
         appendLine("### Test Cases:")
@@ -366,7 +366,7 @@ fun Case.toSerie(name: String, value: Long, now: Long): Any {
     )
 }
 
-fun uploadToDataDog(cases: List<Case>) {
+fun uploadToDatadog(cases: List<Case>) {
     val now = System.currentTimeMillis() / 1000
     val body = mapOf(
         "series" to cases.flatMap {
@@ -404,7 +404,7 @@ fun main() {
         updateOrCreateGithubIssue(testResult)
     }
     if (getOptionalInput("dd_api_key") != null) {
-        uploadToDataDog(testResult.cases)
+        uploadToDatadog(testResult.cases)
     }
 }
 

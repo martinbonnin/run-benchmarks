@@ -24,6 +24,9 @@ inputs:
     description: 'Datadog metric prefix.'
     required: false
     default: 'android.benchmark'
+  dd_dashboard_url:
+    description: 'The link to the dashboard. Will be included in the issue description if provided.'
+    required: false
 
 
 runs:

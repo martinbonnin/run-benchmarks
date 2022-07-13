@@ -24,7 +24,6 @@ import java.io.File
 import java.util.Date
 import kotlin.math.roundToLong
 
-
 /**
  * This script expects:
  *
@@ -262,10 +261,13 @@ data class Case(
 
 fun issueBody(testResult: TestResult): String {
     return buildString {
-        appendLine("${Date()}")
-        appendLine("[${testResult.firebaseUrl}](${testResult.firebaseUrl})")
+        appendLine("### Last Run: ${Date()}")
+        appendLine("* Firebase console: [link](${testResult.firebaseUrl})")
+        getOptionalInput("dd_dashboard_url")?.let {
+            appendLine("* DataDog dashboard: [link](${it})")
+        }
         appendLine()
-        appendLine("Test Cases:")
+        appendLine("### Test Cases:")
         appendLine("| Test Case | Nanos | Allocs |")
         appendLine("|-----------|-------|--------|")
         testResult.cases.forEach {
@@ -343,7 +345,7 @@ fun ghGraphQL(operation: String, variables: Map<String, String> = emptyMap()): M
         operation = operation,
         headers = headers,
         variables = variables
-    ).also { println(it) }.get("data").asMap
+    ).get("data").asMap
 }
 
 
@@ -365,7 +367,7 @@ fun Case.toSerie(name: String, value: Long, now: Long): Any {
 }
 
 fun uploadToDataDog(cases: List<Case>) {
-    val now = System.currentTimeMillis()/1000
+    val now = System.currentTimeMillis() / 1000
     val body = mapOf(
         "series" to cases.flatMap {
             listOf(
@@ -397,7 +399,6 @@ fun main() {
     val gcloud = authenticate()
     val testOutput = runTest(gcloud.projectId)
     val testResult = getTestResult(testOutput, gcloud.storage)
-    println(testResult)
 
     if (getOptionalInput("github_token") != null) {
         updateOrCreateGithubIssue(testResult)

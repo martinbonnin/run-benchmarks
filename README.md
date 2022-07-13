@@ -43,10 +43,10 @@ jobs:
           # Optional, upload to datadog
           dd_api_key: ${{ secrets.DD_API_KEY }}
           dd_metric_prefix: 'android.benchmark'
-          dd_dashboard_url: 'https://p.datadoghq.com/sb/'
 
           # Optional, create a dashboard issue that publishes the latest results
           github_token: ${{ github.token }}
+          dd_dashboard_url: 'https://p.datadoghq.com/sb/'
 ```
 
 ### Datadog integration

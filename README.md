@@ -6,15 +6,16 @@ in [Firebase Test Labs](https://firebase.google.com/docs/test-lab) and optionall
 - updates a GitHub issue with the latest benchmark results ([see here for a sample issue](https://github.com/martinbonnin/run-benchmarks-sample/issues/1))
 - publishes the metrics to Datadog ([see here for a sample dashboard](https://p.datadoghq.com/sb/5218edc4-01bd-11ed-a9be-da7ad0900002-8b732d527dbbc83641c63ef56364d8d1))
 
-> Note: Macrobenchmarks are not supported yet
-
 See the action in action (ha ha!) at https://github.com/martinbonnin/run-benchmarks-sample
+
+> Note: Macrobenchmarks are not supported just yet
 
 ### Configuration
 
 ```yaml
 on:
   schedule:
+    # Run every night
     - cron: '0 3 * * *'
 
 jobs:
@@ -39,11 +40,12 @@ jobs:
           test_apk: 'microbenchmark/build/outputs/apk/androidTest/release/microbenchmark-release-androidTest.apk'
           device_model: 'redfin,locale=en,orientation=portrait' 
           
-          # Optional, for Datadog upload
+          # Optional, upload to datadog
           dd_api_key: ${{ secrets.DD_API_KEY }}
           dd_metric_prefix: 'android.benchmark'
+          dd_dashboard_url: 'https://p.datadoghq.com/sb/'
 
-          # Optional, to create a dashboard issue that publishes the latest results
+          # Optional, create a dashboard issue that publishes the latest results
           github_token: ${{ github.token }}
 ```
 

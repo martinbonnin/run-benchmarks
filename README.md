@@ -4,7 +4,7 @@ A Github Action that runs
 your [Android microbenchmarks](https://developer.android.com/topic/performance/benchmarking/benchmarking-overview)
 in [Firebase Test Labs](https://firebase.google.com/docs/test-lab) and optionally:
 - updates a GitHub issue with the latest benchmark results ([see here for a sample issue](https://github.com/martinbonnin/run-benchmarks-sample/issues/1))
-- publishes the metrics to DataDog ([see here for a sample dashboard](https://p.datadoghq.com/sb/5218edc4-01bd-11ed-a9be-da7ad0900002-a5dcf88cc1568992046fe8bd37efe767))
+- publishes the metrics to DataDog ([see here for a sample dashboard](https://p.datadoghq.com/sb/5218edc4-01bd-11ed-a9be-da7ad0900002-8b732d527dbbc83641c63ef56364d8d1))
 
 > Note: Macrobenchmarks are not supported yet
 
